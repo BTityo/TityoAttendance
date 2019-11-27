@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Abp.Authorization.Users;
+﻿using Abp.Authorization.Users;
 using Abp.Extensions;
+using System;
+using System.Collections.Generic;
+using TityoAttendance.TityoAttendance.TityoAttendance;
 
 namespace TityoAttendance.Authorization.Users
 {
@@ -30,5 +31,9 @@ namespace TityoAttendance.Authorization.Users
 
             return user;
         }
+
+
+        // TityoAttendance foreign key
+        public ICollection<Attendance> Attendances { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TityoAttendance.EntityFrameworkCore;
 
 namespace TityoAttendance.Migrations
 {
     [DbContext(typeof(TityoAttendanceDbContext))]
-    partial class TityoAttendanceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191127151739_AttendanceCompanyCreate")]
+    partial class AttendanceCompanyCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

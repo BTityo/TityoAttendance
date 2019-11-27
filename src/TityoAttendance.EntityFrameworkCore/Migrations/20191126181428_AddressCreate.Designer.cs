@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TityoAttendance.EntityFrameworkCore;
 
 namespace TityoAttendance.Migrations
 {
     [DbContext(typeof(TityoAttendanceDbContext))]
-    partial class TityoAttendanceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191126181428_AddressCreate")]
+    partial class AddressCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1084,7 +1086,7 @@ namespace TityoAttendance.Migrations
                     b.ToTable("AbpTenants");
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.Address", b =>
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.Address.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1108,7 +1110,7 @@ namespace TityoAttendance.Migrations
                     b.ToTable("Address","Address");
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.City", b =>
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.Address.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1129,7 +1131,7 @@ namespace TityoAttendance.Migrations
                     b.ToTable("City","Address");
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.Country", b =>
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.Address.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1148,7 +1150,7 @@ namespace TityoAttendance.Migrations
                     b.ToTable("Country","Address");
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.County", b =>
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.Address.County", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1171,7 +1173,7 @@ namespace TityoAttendance.Migrations
                     b.ToTable("County","Address");
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.NatureOfPublicPlace", b =>
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.Address.NatureOfPublicPlace", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1184,91 +1186,6 @@ namespace TityoAttendance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NatureOfPublicPlace","Address");
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAttendance.Attendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("ActualDay");
-
-                    b.Property<TimeSpan>("From");
-
-                    b.Property<bool>("IsPaid");
-
-                    b.Property<TimeSpan>("To");
-
-                    b.Property<long>("UserId");
-
-                    b.Property<byte>("WorkedHours");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Attendance","Attendance");
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoCompany.Company", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AddressId");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("Company","Company");
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoCompany.UserCompanyMap", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CompanyId");
-
-                    b.Property<long>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserCompanyMap","Company");
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoSalary.Salary", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AllPaidHours");
-
-                    b.Property<int>("AllWorkedHours");
-
-                    b.Property<int>("HourlyWage");
-
-                    b.Property<int>("Income");
-
-                    b.Property<int>("UserCompanyMapId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserCompanyMapId");
-
-                    b.ToTable("Salary","Salary");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -1440,69 +1357,32 @@ namespace TityoAttendance.Migrations
                         .HasForeignKey("LastModifierUserId");
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.Address", b =>
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.Address.Address", b =>
                 {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.City", "City")
+                    b.HasOne("TityoAttendance.TityoAttendance.Address.City", "City")
                         .WithMany("Addresses")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.NatureOfPublicPlace", "NatureOfPublicPlace")
+                    b.HasOne("TityoAttendance.TityoAttendance.Address.NatureOfPublicPlace", "NatureOfPublicPlace")
                         .WithMany("Addresses")
                         .HasForeignKey("NatureOfPublicPlaceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.City", b =>
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.Address.City", b =>
                 {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.County", "County")
+                    b.HasOne("TityoAttendance.TityoAttendance.Address.County", "County")
                         .WithMany("Cities")
                         .HasForeignKey("CountyId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.County", b =>
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.Address.County", b =>
                 {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.Country", "Country")
+                    b.HasOne("TityoAttendance.TityoAttendance.Address.Country", "Country")
                         .WithMany("Counties")
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAttendance.Attendance", b =>
-                {
-                    b.HasOne("TityoAttendance.Authorization.Users.User", "User")
-                        .WithMany("Attendances")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoCompany.Company", b =>
-                {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.Address", "Address")
-                        .WithMany("Companies")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoCompany.UserCompanyMap", b =>
-                {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoCompany.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("TityoAttendance.Authorization.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoSalary.Salary", b =>
-                {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoCompany.UserCompanyMap", "UserCompanyMap")
-                        .WithMany("Salaries")
-                        .HasForeignKey("UserCompanyMapId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
