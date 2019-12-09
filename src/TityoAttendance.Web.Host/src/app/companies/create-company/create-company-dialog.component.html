@@ -1,0 +1,143 @@
+<form autocomplete="off" #createCompanyModal="ngForm" (ngSubmit)="save()">
+    <h1 mat-dialog-title>{{ "CreateNewCompany" | localize }}</h1>
+    <mat-dialog-content style="width:800px;height:300px;">
+        <mat-tab-group>
+            <mat-tab [label]="'Company' | localize">
+                <br />
+                <div class="row-fluid">
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <input matInput
+                                   name="Name"
+                                   [placeholder]="'Name' | localize"
+                                   [(ngModel)]="company.name"
+                                   required
+                                   minlength="2" />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput
+                                   name="Email"
+                                   [placeholder]="'EmailAddress' | localize"
+                                   [(ngModel)]="company.email"
+                                   required
+                                   type="email"
+                                   maxlength="32"
+                                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" />
+                        </mat-form-field>
+                        <div class="col-md-3">
+                            <mat-form-field>
+                                <mat-select [value]="+36">
+                                    <mat-option [value]="+36">
+                                        +36
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput
+                                       [placeholder]="'MobilePhone' | localize"
+                                       [(ngModel)]="company.mobilePhone"
+                                       type="text"
+                                       pattern="[0-9]*"
+                                       name="MobilePhone"
+                                       required
+                                       minlength="9"
+                                       maxlength="9" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab [label]="'Address' | localize">
+                <br />
+                <div class="row-fluid">
+                    <div class="col-md-12">
+                        <mat-form-field>
+                            <mat-label>{{"Country" | localize}}</mat-label>
+                            <mat-select [(value)]="countries[0]" (selectionChange)="selectChanged($event.value)" required>
+                                <mat-option *ngFor="let country of countries" [value]="country">
+                                    {{country.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>{{"County" | localize}}</mat-label>
+                            <mat-select [(value)]="counties[0]" (selectionChange)="selectChanged($event.value)" required>
+                                <mat-option *ngFor="let county of counties" [value]="county">
+                                    {{county.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput
+                                       name="ZipCode"
+                                       [placeholder]="'ZipCode' | localize"
+                                       [(ngModel)]="zipCode"
+                                       required
+                                       disabled />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <mat-label>{{"City" | localize}}</mat-label>
+                                <mat-select (selectionChange)="selectChanged($event.value)" required>
+                                    <mat-option *ngFor="let city of cities" [value]="city">
+                                        {{city.name + "(" + city.zipCode + ")"}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <input matInput
+                                       name="Street"
+                                       [placeholder]="'Street' | localize"
+                                       [(ngModel)]="address.street"
+                                       required
+                                       minlength="2"
+                                       maxlength="30" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <mat-label>{{"NatureOfPublicPlace" | localize}}</mat-label>
+                                <mat-select [(value)]="natureOfPublicPlaces[0]" (selectionChange)="selectChanged($event.value)" required>
+                                    <mat-option *ngFor="let natureOfPublicPlace of natureOfPublicPlaces" [value]="natureOfPublicPlace">
+                                        {{natureOfPublicPlace.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <input matInput
+                                       name="HouseNumber"
+                                       [placeholder]="'HouseNumber' | localize"
+                                       [(ngModel)]="address.houseNumber"
+                                       required
+                                       minlength="1"
+                                       maxlength="5" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-dialog-content>
+    <div mat-dialog-actions align="end">
+        <button mat-button type="button" [disabled]="saving" (click)="close(false)">
+            {{ "Cancel" | localize }}
+        </button>
+        <button mat-flat-button
+                type="submit"
+                flex="15"
+                color="primary"
+                [disabled]="!createCompanyModal.form.valid || saving">
+            {{ "Save" | localize }}
+        </button>
+    </div>
+</form>

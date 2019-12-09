@@ -18,57 +18,70 @@
 @grey: #9E9E9E;
 @blue-grey: #607D8B;
 @black: #000;
+
 .make-theme(@color) {
     .sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle):before {
         color: @color;
     }
+
     .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
         background-color: @color;
     }
+
     .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
         background-color: fade(@color, 50%);
     }
+
     .mat-fab.mat-primary,
     .mat-mini-fab.mat-primary,
     .mat-raised-button.mat-primary {
         background-color: @color;
     }
+
     .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
         border-color: @color;
     }
+
     .mat-radio-button.mat-accent .mat-radio-inner-circle {
         background-color: @color;
     }
+
     .mat-checkbox-checked.mat-accent:not(.mat-checkbox-disabled) .mat-checkbox-background,
     .mat-checkbox-indeterminate.mat-accent:not(.mat-checkbox-disabled) .mat-checkbox-background {
         background-color: @color;
     }
+
     .card .action .material-icons {
-        color: @color  !important;
+        color: @color !important;
     }
     /* add theme-links to a parent element to indicate that all children anchors should use the current theme's color */
     .theme-links a {
-        color: @color  !important;
+        color: @color !important;
     }
+
     .theme-active-link {
         .active a {
-            color: @color  !important;
+            color: @color !important;
         }
+
         a:hover {
-            color: @color  !important;
+            color: @color !important;
         }
+
         a:focus {
-            color: @color  !important;
+            color: @color !important;
         }
     }
+
     .ngx-pagination .current {
         background-color: @color;
     }
+
     .btn-primary,
     .btn-primary:hover,
     .btn-primary:active,
     .btn-primary:focus {
-        background-color: @color  !important;
+        background-color: @color !important;
     }
     // a.dropdown-toggle {
     //     color: @color !important;
@@ -77,23 +90,28 @@
     .mat-tab-nav-bar.mat-primary .mat-ink-bar {
         background-color: @color;
     }
+
     .mat-fab.mat-primary:not([disabled]),
     .mat-flat-button.mat-primary:not([disabled]),
     .mat-mini-fab.mat-primary:not([disabled]),
     .mat-raised-button.mat-primary:not([disabled]) {
         background-color: @color !important;
     }
+
     .mat-form-field-invalid .mat-input-element,
     .mat-warn .mat-input-element {
         caret-color: @color;
     }
+
     .form-group .form-line:after {
         border-bottom-color: @color;
     }
+
     .mat-form-field.mat-focused {
         .mat-form-field-label {
             color: @color;
         }
+
         .mat-form-field-ripple {
             background-color: @color;
         }
@@ -192,7 +210,7 @@
 
 /* Portlet */
 
-.portlet.light>.portlet-title .inputs.inputs-full-width {
+.portlet.light > .portlet-title .inputs.inputs-full-width {
     display: block;
     float: none;
 }
@@ -205,9 +223,11 @@ topbar-languageswitch {
     float: left;
     margin-top: 25px;
     margin-left: 10px;
+
     a {
         text-decoration: none;
         color: #fff;
+
         &:hover {
             text-decoration: none;
             color: #fff;
@@ -224,7 +244,8 @@ topbar-languageswitch {
 .checkbox-wrapper {
     min-height: 50px;
     display: flex;
-    >mat-checkbox {
+
+    > mat-checkbox {
         align-self: center;
     }
 }
@@ -246,6 +267,6 @@ topbar-languageswitch {
     display: block !important;
 }
 
-.table-responsive{
+.table-responsive {
     overflow: hidden;
 }

@@ -18,6 +18,7 @@ namespace TityoAttendance.EntityFrameworkCore.Seed.Host
             return new List<ApplicationLanguage>
             {
                 new ApplicationLanguage(tenantId, "en", "English", "famfamfam-flags gb"),
+                new ApplicationLanguage(tenantId, "hu", "Magyar", "famfamfam-flags hu"),
                 new ApplicationLanguage(tenantId, "ar", "العربية", "famfamfam-flags sa"),
                 new ApplicationLanguage(tenantId, "de", "German", "famfamfam-flags de"),
                 new ApplicationLanguage(tenantId, "it", "Italiano", "famfamfam-flags it"),

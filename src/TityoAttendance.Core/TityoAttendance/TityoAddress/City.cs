@@ -17,8 +17,8 @@ namespace TityoAttendance.TityoAttendance.TityoAddress
         public short ZipCode { get; set; }
 
         [Required]
-        public int CountyId { get; set; }
-        public County County { get; set; }
+        [MaxLength(2)]
+        public string CountyCode { get; set; }
 
         public ICollection<Address> Addresses { get; set; }
     }

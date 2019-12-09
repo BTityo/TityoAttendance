@@ -4,12 +4,16 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TityoAttendance.Authorization.Users;
+using TityoAttendance.TityoAttendance.TityoCompany;
+using TityoAttendance.TityoAttendance.TityoProject;
 
 namespace TityoAttendance.TityoAttendance.TityoAttendance
 {
     [Table("Attendance", Schema = "Attendance")]
     public class Attendance : Entity<int>
     {
+        public string Description { get; set; }
+
         [Required]
         public DateTime ActualDay { get { return ActualDay.Date; } set { ActualDay = value.Date; } }
 
@@ -29,7 +33,7 @@ namespace TityoAttendance.TityoAttendance.TityoAttendance
 
 
         [Required]
-        public long UserId { get; set; }
-        public User User { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }

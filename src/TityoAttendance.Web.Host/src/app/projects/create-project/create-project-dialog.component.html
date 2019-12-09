@@ -1,0 +1,49 @@
+<form autocomplete="off" #createProjectModal="ngForm" (ngSubmit)="save()">
+    <h1 mat-dialog-title>{{ "CreateNewProject" | localize }}</h1>
+    <mat-dialog-content style="width:800px;height:300px;">
+        <mat-tab-group>
+            <mat-tab [label]="'Project' | localize">
+                <br />
+                <div class="row-fluid">
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <input matInput
+                                   name="Name"
+                                   [placeholder]="'Name' | localize"
+                                   [(ngModel)]="project.name"
+                                   required
+                                   minlength="2" />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput
+                                   name="Description"
+                                   [placeholder]="'Description' | localize"
+                                   [(ngModel)]="project.description" />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput
+                                   name="Color"
+                                   required
+                                   [(ngModel)]="project.color"
+                                   [value]="project.color"
+                                   [style.background]="project.color"
+                                   [(colorPicker)]="project.color" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-dialog-content>
+    <div mat-dialog-actions align="end">
+        <button mat-button type="button" [disabled]="saving" (click)="close(false)">
+            {{ "Cancel" | localize }}
+        </button>
+        <button mat-flat-button
+                type="submit"
+                flex="15"
+                color="primary"
+                [disabled]="!createProjectModal.form.valid || saving">
+            {{ "Save" | localize }}
+        </button>
+    </div>
+</form>

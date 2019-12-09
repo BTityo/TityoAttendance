@@ -13,8 +13,17 @@ namespace TityoAttendance.TityoAttendance.TityoAddress
         public string Street { get; set; }
 
         [Required]
-        public byte HouseNumber { get; set; }
+        [MaxLength(8)]
+        public string HouseNumber { get; set; }
 
+
+        [Required]
+        public int CountryId { get; set; }
+        public Country Country { get; set; }
+
+        [Required]
+        public int CountyId { get; set; }
+        public County County { get; set; }
 
         [Required]
         public int CityId { get; set; }

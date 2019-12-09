@@ -15,6 +15,14 @@
     <EmbeddedResource Include="Localization\SourceFiles\*.xml" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Localization\SourceFiles\TityoAttendance-hu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Localization\SourceFiles\TityoAttendance-hu.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Abp.AutoMapper" Version="4.9.0" />
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="4.9.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.4" />

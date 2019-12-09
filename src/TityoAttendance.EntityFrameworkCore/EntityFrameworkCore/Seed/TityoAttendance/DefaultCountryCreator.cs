@@ -259,14 +259,14 @@ namespace TityoAttendance.EntityFrameworkCore.Seed.TityoAttendance
             AddCountryIfNotExists("Zöld-foki-szigetek", "CV");
         }
 
-        private void AddCountryIfNotExists(string name, string cityCode)
+        private void AddCountryIfNotExists(string name, string countryCode)
         {
-            if (_context.Countries.IgnoreQueryFilters().Any(c => c.Name == name && c.CityCode == cityCode))
+            if (_context.Countries.IgnoreQueryFilters().Any(c => c.Name == name && c.CountryCode == countryCode))
             {
                 return;
             }
 
-            _context.Countries.Add(new Country() { Name = name, CityCode = cityCode });
+            _context.Countries.Add(new Country() { Name = name, CountryCode = countryCode });
             _context.SaveChanges();
         }
     }

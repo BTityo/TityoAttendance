@@ -95,5 +95,31 @@
     <text name="Skins">Skins</text>
     <text name="Settings">Settings</text>
     <text name="Filter">Filter</text>
+    <text name="Companies">Companies</text>
+    <text name="Company">Company</text>
+    <text name="CompanyDeleteWarningMessage">Are you sure want to delete this company: {0}?</text>
+    <text name="SelectCompany">Select a company</text>
+    <text name="NoSelectedCompany">You have to select a company!</text>
+    <text name="MobilePhone">Mobile phone</text>
+    <text name="Country">Country</text>
+    <text name="County">County</text>
+    <text name="City">City</text>
+    <text name="Street">Street</text>
+    <text name="NatureOfPublicPlace">Nature of public place</text>
+    <text name="HouseNumber">House number</text>
+    <text name="CreateNewCompany">Create new company</text>
+    <text name="Address">Address</text>
+    <text name="ZipCode">ZipCode</text>
+    <text name="EditCompany">Edit company</text>
+    <text name="Project">Project</text>
+    <text name="Projects">Projects</text>
+    <text name="CreateNewProject">Create new project</text>
+    <text name="ProjectDeleteWarningMessage">Are you sure want to delete this project: {0}?</text>
+    <text name="Attendance">Timesheet</text>
+    <text name="Attendances">Timesheets</text>
+    <text name="AttendanceDeleteWarningMessage">Are you sure want to delete this timesheet: {0}?</text>
+    <text name="Description">Description</text>
+    <text name="Color">Color</text>
+    <text name="ColorError">The color: '{0}' has already exists! Every project has created with another color. Choose another color!</text>
   </texts>
 </localizationDictionary>

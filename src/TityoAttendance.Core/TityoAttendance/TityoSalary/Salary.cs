@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TityoAttendance.TityoAttendance.TityoCompany;
+using TityoAttendance.TityoAttendance.TityoProject;
 
 namespace TityoAttendance.TityoAttendance.TityoSalary
 {
@@ -27,7 +28,7 @@ namespace TityoAttendance.TityoAttendance.TityoSalary
         public int HourlyWage { get; set; }
 
         [Required]
-        public int UserCompanyMapId { get; set; }
-        public UserCompanyMap UserCompanyMap { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }

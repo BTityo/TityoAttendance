@@ -1092,7 +1092,13 @@ namespace TityoAttendance.Migrations
 
                     b.Property<int>("CityId");
 
-                    b.Property<byte>("HouseNumber");
+                    b.Property<int>("CountryId");
+
+                    b.Property<int>("CountyId");
+
+                    b.Property<string>("HouseNumber")
+                        .IsRequired()
+                        .HasMaxLength(8);
 
                     b.Property<int>("NatureOfPublicPlaceId");
 
@@ -1102,6 +1108,10 @@ namespace TityoAttendance.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("CountyId");
 
                     b.HasIndex("NatureOfPublicPlaceId");
 
@@ -1114,7 +1124,9 @@ namespace TityoAttendance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountyId");
+                    b.Property<string>("CountyCode")
+                        .IsRequired()
+                        .HasMaxLength(2);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1123,8 +1135,6 @@ namespace TityoAttendance.Migrations
                     b.Property<short>("ZipCode");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CountyId");
 
                     b.ToTable("City","Address");
                 });
@@ -1135,9 +1145,9 @@ namespace TityoAttendance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CityCode")
+                    b.Property<string>("CountryCode")
                         .IsRequired()
-                        .HasMaxLength(3);
+                        .HasMaxLength(2);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1154,7 +1164,9 @@ namespace TityoAttendance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountryId");
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasMaxLength(2);
 
                     b.Property<string>("CountyCode")
                         .IsRequired()
@@ -1165,8 +1177,6 @@ namespace TityoAttendance.Migrations
                         .HasMaxLength(150);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
 
                     b.ToTable("County","Address");
                 });
@@ -1194,17 +1204,23 @@ namespace TityoAttendance.Migrations
 
                     b.Property<DateTime>("ActualDay");
 
+                    b.Property<string>("Description");
+
                     b.Property<TimeSpan>("From");
 
                     b.Property<bool>("IsPaid");
 
+                    b.Property<int>("ProjectId");
+
                     b.Property<TimeSpan>("To");
 
-                    b.Property<long>("UserId");
+                    b.Property<long?>("UserId");
 
                     b.Property<byte>("WorkedHours");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
 
                     b.HasIndex("UserId");
 
@@ -1218,6 +1234,13 @@ namespace TityoAttendance.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AddressId");
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("MobilePhone")
+                        .IsRequired()
+                        .HasMaxLength(9);
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -1248,6 +1271,30 @@ namespace TityoAttendance.Migrations
                     b.ToTable("UserCompanyMap","Company");
                 });
 
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoProject.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(8);
+
+                    b.Property<int>("CompanyId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Project","Project");
+                });
+
             modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoSalary.Salary", b =>
                 {
                     b.Property<int>("Id")
@@ -1262,11 +1309,11 @@ namespace TityoAttendance.Migrations
 
                     b.Property<int>("Income");
 
-                    b.Property<int>("UserCompanyMapId");
+                    b.Property<int>("ProjectId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserCompanyMapId");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("Salary","Salary");
                 });
@@ -1447,34 +1494,32 @@ namespace TityoAttendance.Migrations
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.Country", "Country")
+                        .WithMany("Addresses")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.County", "County")
+                        .WithMany("Addresses")
+                        .HasForeignKey("CountyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.NatureOfPublicPlace", "NatureOfPublicPlace")
                         .WithMany("Addresses")
                         .HasForeignKey("NatureOfPublicPlaceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.City", b =>
-                {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.County", "County")
-                        .WithMany("Cities")
-                        .HasForeignKey("CountyId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAddress.County", b =>
-                {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoAddress.Country", "Country")
-                        .WithMany("Counties")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoAttendance.Attendance", b =>
                 {
-                    b.HasOne("TityoAttendance.Authorization.Users.User", "User")
+                    b.HasOne("TityoAttendance.TityoAttendance.TityoProject.Project", "Project")
                         .WithMany("Attendances")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TityoAttendance.Authorization.Users.User")
+                        .WithMany("Attendances")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoCompany.Company", b =>
@@ -1498,11 +1543,19 @@ namespace TityoAttendance.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoProject.Project", b =>
+                {
+                    b.HasOne("TityoAttendance.TityoAttendance.TityoCompany.Company", "Company")
+                        .WithMany("Projects")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("TityoAttendance.TityoAttendance.TityoSalary.Salary", b =>
                 {
-                    b.HasOne("TityoAttendance.TityoAttendance.TityoCompany.UserCompanyMap", "UserCompanyMap")
+                    b.HasOne("TityoAttendance.TityoAttendance.TityoProject.Project", "Project")
                         .WithMany("Salaries")
-                        .HasForeignKey("UserCompanyMapId")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -6,6 +6,7 @@ using TityoAttendance.MultiTenancy;
 using TityoAttendance.TityoAttendance.TityoAddress;
 using TityoAttendance.TityoAttendance.TityoAttendance;
 using TityoAttendance.TityoAttendance.TityoCompany;
+using TityoAttendance.TityoAttendance.TityoProject;
 
 namespace TityoAttendance.EntityFrameworkCore
 {
@@ -25,6 +26,9 @@ namespace TityoAttendance.EntityFrameworkCore
 
         // Attendance
         public DbSet<Attendance> Attendances { get; set; }
+
+        // Project
+        public DbSet<Project> Projects { get; set; }
 
         public TityoAttendanceDbContext(DbContextOptions<TityoAttendanceDbContext> options)
             : base(options)

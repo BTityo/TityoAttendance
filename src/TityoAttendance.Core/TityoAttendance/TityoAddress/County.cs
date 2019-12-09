@@ -16,11 +16,11 @@ namespace TityoAttendance.TityoAttendance.TityoAddress
         [MaxLength(2)]
         public string CountyCode { get; set; }
 
-
         [Required]
-        public int CountryId { get; set; }
-        public Country Country { get; set; }
+        [MaxLength(2)]
+        public string CountryCode { get; set; }
 
-        public ICollection<City> Cities { get; set; }
+
+        public ICollection<Address> Addresses { get; set; }
     }
 }

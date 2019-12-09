@@ -13,9 +13,10 @@ namespace TityoAttendance.TityoAttendance.TityoAddress
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(3)]
-        public string CityCode { get; set; }
+        [MaxLength(2)]
+        public string CountryCode { get; set; }
 
-        public ICollection<County> Counties { get; set; }
+
+        public ICollection<Address> Addresses { get; set; }
     }
 }

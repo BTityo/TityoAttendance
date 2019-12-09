@@ -14,6 +14,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
+import { ColorPickerModule } from 'ngx-color-picker';
 import {
     MatAutocompleteModule,
     MatBadgeModule,
@@ -95,6 +96,7 @@ import { EqualValidator } from './directives/equal-validator.directive';
         MatToolbarModule,
         MatTooltipModule,
         MatTreeModule,
+        ColorPickerModule,
     ],
     declarations: [
         AbpPaginationControlsComponent,
@@ -148,6 +150,7 @@ import { EqualValidator } from './directives/equal-validator.directive';
         MatTooltipModule,
         MatTreeModule,
         ScrollingModule,
+        ColorPickerModule,
     ]
 })
 export class SharedModule {
